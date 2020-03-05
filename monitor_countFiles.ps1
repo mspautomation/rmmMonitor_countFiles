@@ -14,10 +14,10 @@
 $MonitorPath = "C:\Users"
 $countLimit = 250
 $recurseMode = $false
-$alerts = @{}
+
 
 $githubLink = "https://github.com/mspautomation/rmmMonitor_countFiles"
-$mspSOP = ""
+$mspSOP = "https://github.com/mspautomation/rmmMonitor_countFiles/wiki/mspSOP"
 
 # Are there any input from AEM?
 if (Test-Path env:\MonitorPath) {
@@ -47,7 +47,7 @@ $aem_diagStart  = "<-Start Diagnostic->"
 $aem_diagEnd    = "<-End Diagnostic->"
 $alert          = $false
 
-if(env:\recurseMode -eq $true) {
+if($env:recurseMode -eq $true) {
     $count = (Get-ChildItem -Path $MonitorPath -Recurse -Directory | Measure-Object).Count
 } else {
     $count = (Get-ChildItem -Path $MonitorPath | Measure-Object).Count    
@@ -68,23 +68,24 @@ if($count -gt $countLimit) {
 
 Write-Output $aem_alertStart
 if ($alert -eq $true) {
-    $aem_alert = "Warning=" + $count + " files in " + $MonitorPath + "(" + $recurseMode + ")"
+    $aem_alert = "Warning=" + $count + " files in " + $MonitorPath
             
     }
 
  Else {
 
-    $aem_alert = "Warning=" + $count + " files in " + $MonitorPath + "(" + $recurseMode + ")"
+    $aem_alert = "Warning=" + $count + " files in " + $MonitorPath
 }
 Write-Output $aem_alert
 Write-Output $aem_alertEnd
+
 
 
 if ($alert -eq $true) {
 Write-Output $aem_diagStart
 
 Write-Output ""
-Write-Output ".OST > 14 GB performance issues // > 40 GB issues with outlook-search`n`n"
+Write-Output "`n`n"
 Write-Output "SOP: " + $mspSOP +"`n"
 Write-Output "Support and more for that genius Component: " + $githubLink 
 
@@ -102,3 +103,7 @@ if ($alert -eq $true) {
     {
     Exit 0
     }
+
+
+#
+#
