@@ -5,3 +5,9 @@ Idea: Don't mess up a server with a directory that exceeds the amount of files i
 You can use that datto rmm component:
 1. Monitoring Directories that transfers data between GDI Warenwirtschaft and m-files.
 2. Monitoring Size of Import Directory of ELO Professional
+
+# Documentation
+https://github.com/mspautomation/rmmMonitor_countFiles/wiki
+
+
+Feel free to add, modify, contribute ... 
